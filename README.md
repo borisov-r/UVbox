@@ -1,8 +1,8 @@
-# UVbox
+## UVbox
 
 UV box for PCB manufacturing
 
-## Architecture
+### Architecture
 
 ```
 UVbox ~
@@ -16,12 +16,12 @@ UVbox ~
        \ --- hardware  - all the schematics
 ```
 
-## Usefull links
+### Usefull links
 
  * [node-webkit](https://github.com/rogerwang/node-webkit)
  * [LightTable](http://www.lighttable.com/)
 
-## Authors
+### Authors
 
 Radoslav Borisov
 
@@ -30,7 +30,7 @@ Radoslav Borisov
 [Martin](mailto:martin@libtec.org)
 
 
-## [License](http://en.wikipedia.org/wiki/Beerware)
+### [License](http://en.wikipedia.org/wiki/Beerware)
 
 ```
 /*
