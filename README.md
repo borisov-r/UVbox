@@ -1,22 +1,36 @@
-UVbox
-=====
+# UVbox
 
 UV box for PCB manufacturing
 
-Architecture
-============
+## Architecture
 
+```
+UVbox ~
+       \
+       | --- structure - 3D models of the mechanical parts
+       |
+       | --- software  - software for control and measurement
+       |     |
+       |
+       |
+       \ --- hardware  - all the schematics
+```
 
+## Usefull links
 
-Authors
-=======
+ * [node-webkit](https://github.com/rogerwang/node-webkit)
+ * [LightTable](http://www.lighttable.com/)
+
+## Authors
 
 Radoslav Borisov
+
 [Georgi Kyuchukov](mailto:gkyuchukov86@gmail.com)
+
 [Martin](mailto:martin@libtec.org)
 
-License
-=======
+
+## [License](http://en.wikipedia.org/wiki/Beerware)
 
 ```
 /*
