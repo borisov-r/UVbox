@@ -22,12 +22,9 @@ UVbox ~
  * [LightTable](http://www.lighttable.com/)
 
 ### Authors
-
-Radoslav Borisov
-
-[Georgi Kyuchukov](mailto:gkyuchukov86@gmail.com)
-
-[Martin](mailto:martin@libtec.org)
+ * Radoslav Borisov
+ * [Georgi Kyuchukov](mailto:gkyuchukov86@gmail.com)
+ * [Martin](mailto:martin@libtec.org)
 
 
 ### [License](http://en.wikipedia.org/wiki/Beerware)
