@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="/socket.io/socket.io.js"></script>
+        <script type="text/javascript">
+
+
+//
+// when enter is pressed, register new message for sending
+//
+var inputDelta = {};
+
+function runScript(e, obj) {
+
+    if (e.keyCode == 13 || event.keyCode == 13) {
+        //var tb = document.getElementById("scriptBox");
+
+        var key = obj.id;
+        var value = obj.value;
+        inputDelta[key] = value;
+
+        return false;
+    }
+}
+
+function responseUpdata(data) {
+    var respObj = data['message'];
+
+    // update the responses here
+    var keys = Object.keys(respObj);
+    for (var i = 0; i < keys.length; i++) {
+
+        var tb = document.getElementById(keys[i]);
+
+        if (tb != null) {
+           tb.innerHTML = respObj[keys[i]];
+        }
+    }
+}
+
+
+//
+// socket io init
+//
+
+var socketio = io.connect("127.0.0.1:1337");
+
+//
+// socket io response functionality
+//
+
+socketio.on("message_to_client", function(data) {
+    responseUpdata(data);
+});
+
+//
+// socket io send message fuctionality - 
+//
+var interval = setInterval(sendMessage, 500);
+
+function sendMessage() {
+    var msg = document.getElementById("message_input").value;
+    socketio.emit("message_to_server", { message : inputDelta});
+}
+
+//
+//-------------------------------------------------------------------------------
+//
+        </script>
+    </head>
+    <body>
+        <input type="text" id="message_input" onkeypress="return runScript(event, this)"/>
+        <button onclick="sendMessage()">send</button>
+        <div id="message_input_out"></div>
+
+        <input type="text" id="inp1" onkeypress="return runScript(event, this)"/>
+        <div id="inp1_out"></div>
+
+        <input type="text" id="inp2" onkeypress="return runScript(event, this)"/>
+        <div id="inp2_out"></div>
+
+    </body>
+</html>
