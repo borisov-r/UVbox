@@ -34,6 +34,7 @@ UVbox ~
  * [node-webkit](https://github.com/rogerwang/node-webkit)
  * [LightTable](http://www.lighttable.com/)
  * [Java Script Styleguide](https://github.com/airbnb/javascript)
+ * [Markdown-Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 
 ### Authors
  * Radoslav Borisov
