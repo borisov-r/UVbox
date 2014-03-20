@@ -32,6 +32,7 @@ UVbox ~
 ### Usefull links
 
  * [node-webkit](https://github.com/rogerwang/node-webkit)
+ * [nodeclipse](http://www.nodeclipse.org/updates)
  * [LightTable](http://www.lighttable.com/)
  * [Java Script Styleguide](https://github.com/airbnb/javascript)
  * [Markdown-Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
