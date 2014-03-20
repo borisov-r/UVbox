@@ -36,6 +36,7 @@ UVbox ~
  * [LightTable](http://www.lighttable.com/)
  * [Java Script Styleguide](https://github.com/airbnb/javascript)
  * [Markdown-Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+ * [Minimal arduino library for processing serial commands](http://awtfy.com/2011/05/23/a-minimal-arduino-library-for-processing-serial-commands/)
 
 ### Authors
  * Radoslav Borisov
