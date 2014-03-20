@@ -6,14 +6,27 @@ UV box for PCB manufacturing
 
 ```
 UVbox ~
-       \
-       | --- structure - 3D models of the mechanical parts
-       |
-       | --- software  - software for control and measurement
-       |     |
-       |
-       |
-       \ --- hardware  - all the schematics
+        \
+        |---/structure - 3D models of the mechanical parts
+            |
+            |--- /parts - parts to build the box
+        |
+        |---/software  - software for control and measurement
+            |
+            |--- /bin - compiled libraries (if needed)
+            |--- /src - main source code
+                    |
+                    |--- /js    - all java script code here
+                    |--- /css   - look better with css
+                    |--- /db    - reddis is ok probably
+            |--- /test - unit tests
+            |
+        \--- hardware  - all the schematics and layouts eventually
+            |
+            |--- /gerbers
+            |--- /kicad
+            |--- /documentation
+            |
 ```
 
 ### Usefull links
