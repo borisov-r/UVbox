@@ -33,6 +33,7 @@ UVbox ~
 
  * [node-webkit](https://github.com/rogerwang/node-webkit)
  * [LightTable](http://www.lighttable.com/)
+ * [Java Script Styleguide](https://github.com/airbnb/javascript)
 
 ### Authors
  * Radoslav Borisov
