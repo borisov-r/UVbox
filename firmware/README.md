@@ -3,10 +3,9 @@
 Firmware is installed on Arduino to controll all the processes and
 collect real time information from sensors.
 
-Files:
-    firmware.ino    - project's main file
-    serial.cpp      - defines serial communication
-    serial.h        - only definitions here
+  * firmware.ino        - project's main file
+    * serial.cpp        - defines serial communication
+    * serial.h          - only definitions here
 
 ## Dependencies
 
@@ -26,8 +25,10 @@ Copy library to Arduino IDE
 cp ./ArduinoSerialCommand path-to/arduino/libraries/
 ```
 
-Edit 'SerialCommand.h' in 'path-to/arduino/libraries/ArduinoSerialCommand/' as
+Edit *'path-to/arduino/libraries/ArduinoSerialCommand/SerialCommand.h'* as
 described in file to remove SoftwareSerial dependencies.
+
+At the end file should look like this:
 
 ```
 // If you want to use SerialCommand with the hardware serial port only, and want to disable
@@ -38,7 +39,7 @@ described in file to remove SoftwareSerial dependencies.
 // You don't have to use SoftwareSerial features if this is not defined, you can still only use
 // the Hardware serial port, just that this way lets you get out of having to include
 // the SoftwareSerial.h header.
-//#define SERIALCOMMAND_HARDWAREONLY 1
-#undef SERIALCOMMAND_HARDWAREONLY
+#define SERIALCOMMAND_HARDWAREONLY 1
+//#undef SERIALCOMMAND_HARDWAREONLY
 ```
 
