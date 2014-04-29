@@ -11,6 +11,8 @@ UVbox ~
             |
             |--- /parts - parts to build the box
         |
+        |---/firmware - Arduino serial communication
+        |
         |---/software  - software for control and measurement
             |
             |--- /bin - compiled libraries (if needed)
