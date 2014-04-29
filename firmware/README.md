@@ -4,8 +4,6 @@ Firmware is installed on Arduino to controll all the processes and
 collect real time information from sensors.
 
   * firmware.ino        - project's main file
-    * serial.cpp        - defines serial communication
-    * serial.h          - only definitions here
 
 ## Dependencies
 
