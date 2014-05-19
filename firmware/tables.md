@@ -6,7 +6,16 @@ Three tables are implemented:
  * STATE
  * COMMAND QUEUE
 
-Example:
+Fields in the table (short explanation):
+ 
+ Name   : Human readable interface name
+ I/O    : Input (logical "1") / Output (logical "0")
+ Index  : 5 bit unique number for fast control (starts from "0" for Inputs and Outputs)
+ Type   : variable type ( bool (00), int (01), float (10), char (11) )
+ VALUE  : read only (actual value from ADC or current state)
+
+
+## Example:
 
 #### INTERFACE TABLE
 
@@ -21,7 +30,7 @@ Example:
 
 | Inputs |       | Outputs |       |
 |--------|-------|---------|-------|
-| Index  | VALUE | INDEX   | VALUE |
+| Index  | VALUE | Index   | VALUE |
 | 00000  | 1255  | 00000   | 0     |
 |        |       | 00001   | 0     |
 
