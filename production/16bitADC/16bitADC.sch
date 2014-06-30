@@ -1,0 +1,222 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:special
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:sch
+EELAYER 24 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L MCP3426 U1
+U 1 1 53B1543A
+P 6350 4050
+F 0 "U1" H 6200 4350 60  0000 C CNN
+F 1 "MCP3426" H 6350 3750 60  0000 C CNN
+F 2 "" H 6400 3800 60  0000 C CNN
+F 3 "" H 6400 3800 60  0000 C CNN
+	1    6350 4050
+	1    0    0    -1  
+$EndComp
+$Comp
+L R-trim R1
+U 1 1 53B17073
+P 3400 3600
+F 0 "R1" H 3400 4000 60  0000 C CNN
+F 1 "R-trim" V 3300 3600 60  0000 C CNN
+F 2 "" H 3400 3600 60  0000 C CNN
+F 3 "" H 3400 3600 60  0000 C CNN
+	1    3400 3600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4450 4050 5950 4050
+Wire Wire Line
+	4450 4150 5950 4150
+Wire Wire Line
+	4450 4250 5950 4250
+$Comp
+L CONN_5X2 P3
+U 1 1 53B171A6
+P 4050 4050
+F 0 "P3" H 4050 4350 60  0000 C CNN
+F 1 "CONN_5X2" V 4050 4050 50  0000 C CNN
+F 2 "" H 4050 4050 60  0000 C CNN
+F 3 "" H 4050 4050 60  0000 C CNN
+	1    4050 4050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5950 3950 4450 3950
+Wire Wire Line
+	5950 3850 4450 3850
+Wire Wire Line
+	2700 3950 3650 3950
+Wire Wire Line
+	3650 3600 3650 3850
+Connection ~ 3400 3950
+$Comp
+L CONN_2 P1
+U 1 1 53B174EC
+P 2350 3850
+F 0 "P1" V 2300 3850 40  0000 C CNN
+F 1 "CONN_2" V 2400 3850 40  0000 C CNN
+F 2 "" H 2350 3850 60  0000 C CNN
+F 3 "" H 2350 3850 60  0000 C CNN
+	1    2350 3850
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	2700 3750 3150 3750
+Wire Wire Line
+	3150 3750 3150 3250
+Wire Wire Line
+	3150 3250 3400 3250
+$Comp
+L CONN_2 P2
+U 1 1 53B175C1
+P 2350 4250
+F 0 "P2" V 2300 4250 40  0000 C CNN
+F 1 "CONN_2" V 2400 4250 40  0000 C CNN
+F 2 "" H 2350 4250 60  0000 C CNN
+F 3 "" H 2350 4250 60  0000 C CNN
+	1    2350 4250
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	2700 4150 3650 4150
+Wire Wire Line
+	2700 4350 3150 4350
+Wire Wire Line
+	3150 4350 3150 4250
+Wire Wire Line
+	3150 4250 3650 4250
+$Comp
+L GND #PWR01
+U 1 1 53B17771
+P 3600 4350
+F 0 "#PWR01" H 3600 4350 30  0001 C CNN
+F 1 "GND" H 3600 4280 30  0001 C CNN
+F 2 "" H 3600 4350 60  0000 C CNN
+F 3 "" H 3600 4350 60  0000 C CNN
+	1    3600 4350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3650 4050 3600 4050
+Wire Wire Line
+	3600 4050 3600 4350
+$Comp
+L CONN_5X2 P4
+U 1 1 53B17822
+P 9000 4050
+F 0 "P4" H 9000 4350 60  0000 C CNN
+F 1 "CONN_5X2" V 9000 4050 50  0000 C CNN
+F 2 "" H 9000 4050 60  0000 C CNN
+F 3 "" H 9000 4050 60  0000 C CNN
+	1    9000 4050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6750 3850 8600 3850
+Wire Wire Line
+	6750 3950 8600 3950
+Wire Wire Line
+	6750 4050 8600 4050
+Wire Wire Line
+	6750 4150 8600 4150
+Wire Wire Line
+	6750 4250 8600 4250
+Wire Wire Line
+	5800 4050 5800 4450
+Wire Wire Line
+	5800 4450 9400 4450
+Wire Wire Line
+	9400 4250 9400 4550
+Connection ~ 5800 4050
+$Comp
+L GND #PWR02
+U 1 1 53B17A04
+P 9400 4550
+F 0 "#PWR02" H 9400 4550 30  0001 C CNN
+F 1 "GND" H 9400 4480 30  0001 C CNN
+F 2 "" H 9400 4550 60  0000 C CNN
+F 3 "" H 9400 4550 60  0000 C CNN
+	1    9400 4550
+	1    0    0    -1  
+$EndComp
+Connection ~ 9400 4450
+Wire Wire Line
+	8500 4150 8500 3600
+Wire Wire Line
+	8500 3600 9600 3600
+Wire Wire Line
+	9600 3600 9600 4150
+Wire Wire Line
+	9600 4150 9400 4150
+Connection ~ 8500 4150
+Wire Wire Line
+	8400 4050 8400 3500
+Wire Wire Line
+	8400 3500 9700 3500
+Wire Wire Line
+	9700 3500 9700 4050
+Wire Wire Line
+	9700 4050 9400 4050
+Connection ~ 8400 4050
+Wire Wire Line
+	8300 3950 8300 3400
+Wire Wire Line
+	8300 3400 9800 3400
+Wire Wire Line
+	9800 3400 9800 3950
+Wire Wire Line
+	9800 3950 9400 3950
+Connection ~ 8300 3950
+Wire Wire Line
+	8200 3850 8200 3300
+Wire Wire Line
+	8200 3300 9900 3300
+Wire Wire Line
+	9900 3300 9900 3850
+Wire Wire Line
+	9900 3850 9400 3850
+Connection ~ 8200 3850
+$EndSCHEMATC

@@ -1,0 +1,45 @@
+Cmp-Mod V01 Created by Cvpcb (2014-04-28 BZR 4837)-product   date = Mon 30 Jun 2014 05:32:49 PM EEST
+
+BeginCmp
+TimeStamp = /53B174EC;
+Reference = P1;
+ValeurCmp = CONN_2;
+IdModule  = Connect:PINHEAD1-2;
+EndCmp
+
+BeginCmp
+TimeStamp = /53B175C1;
+Reference = P2;
+ValeurCmp = CONN_2;
+IdModule  = Connect:PINHEAD1-2;
+EndCmp
+
+BeginCmp
+TimeStamp = /53B171A6;
+Reference = P3;
+ValeurCmp = CONN_5X2;
+IdModule  = Pin_Headers:Pin_Header_Straight_2x05;
+EndCmp
+
+BeginCmp
+TimeStamp = /53B17822;
+Reference = P4;
+ValeurCmp = CONN_5X2;
+IdModule  = Pin_Headers:Pin_Header_Straight_2x05;
+EndCmp
+
+BeginCmp
+TimeStamp = /53B17073;
+Reference = R1;
+ValeurCmp = R-trim;
+IdModule  = ;
+EndCmp
+
+BeginCmp
+TimeStamp = /53B1543A;
+Reference = U1;
+ValeurCmp = MCP3426;
+IdModule  = ;
+EndCmp
+
+EndListe

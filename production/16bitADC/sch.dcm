@@ -1,0 +1,15 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP MICRO-USB-B-R/A
+D Micro USB type B right angle 
+K usb, micro usb, type b, right angle
+F http://store.comet.bg/download-file.php?id=5534
+$ENDCMP
+#
+$CMP R-trim
+D Resistor trimmer
+K resistor, trimmer
+F http://store.comet.bg/download-file.php?id=5079
+$ENDCMP
+#
+#End Doc Library
