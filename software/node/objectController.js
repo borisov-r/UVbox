@@ -1,6 +1,6 @@
 (function() {
 
-//    var communicator = 
+    var communicator = require('./serialComunicator');
 
 
     var testProcedureImpl = require('./procedures/testProcedure');
@@ -12,8 +12,17 @@
 
     var currentProcedure = 'start';
 
-    module.exports.start = function(context) {
-        return procedures[currentProcedure].execute(context);
+    module.exports.scheduler = function(context) {
+  
+        context.comunicator = communicator;
+        if (procedures[currentProcedure].initialized() != 'true') {
+            procedures[currentProcedure].init(context);
+        }
+
+        nextProc = procedures[currentProcedure].execute(context);
+        currentProcedure = nextProc;
+
+
     }
 
     module.exports.processHttpReq = function() {

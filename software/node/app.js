@@ -7,7 +7,9 @@ var httpServer = require('./httpServer');
 
 httpServer.startServer(objectController);
 console.log('testtesttest');
-console.log(objectController.start(context));
+
+//var f = objectController.scheduler(context);
+setInterval(function() {objectController.scheduler(context);}, 1000);
 
 //init function
 
