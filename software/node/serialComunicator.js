@@ -25,7 +25,7 @@
 
 
     var SerialPort  = require('serialport2').SerialPort;
-    var portName = '/dev/tty0';//'/dev/ttyACM0';
+    var portName = '/dev/ttyUSB0';//'/dev/ttyACM0';
 
     var sp = new SerialPort(); // instantiate the serial port.
     sp.open(portName, { // portName is instatiated to be COM3, replace as necessary
