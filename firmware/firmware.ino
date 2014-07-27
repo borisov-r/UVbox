@@ -9,61 +9,57 @@
   Explanation: Firmware uses Steven Cogswell's ArduinoSerialCommand library for communication.
                Simple commands will be added later to process data from PC.
 
-  References: https://github.com/scogswell/ArduinoSerialCommand
-              https://github.com/scogswell/ArduinoSerialCommand/blob/master/examples/SerialCommandExample/SerialCommandExample.pde
+  References: 
+		https://github.com/kroimon/Arduino-SerialCommand
 
   License: Beerware (http://en.wikipedia.org/wiki/Beerware)
   ============================================================================================
 */
 
+// Demo Code for SerialCommand Library
+// Steven Cogswell
+// May 2011
 
 #include <SerialCommand.h>
 
-#define arduinoLED 13 // Arduino LED on board
+#define arduinoLED 17   // Arduino LED on board
 
-SerialCommand SCmd; // The demo SerialCommand object
+SerialCommand sCmd;     // The demo SerialCommand object
 
-void setup()
-{
-  pinMode(arduinoLED,OUTPUT); // Configure the onboard LED for output
-  digitalWrite(arduinoLED,LOW); // default to LED off
+void setup() {
+  pinMode(arduinoLED, OUTPUT);      // Configure the onboard LED for output
+  digitalWrite(arduinoLED, LOW);    // default to LED off
 
   Serial.begin(9600);
 
   // Setup callbacks for SerialCommand commands
-  SCmd.addCommand("ON",LED_on); // Turns LED on
-  SCmd.addCommand("OFF",LED_off); // Turns LED off
-  SCmd.addCommand("HELLO",SayHello); // Echos the string argument back
-  SCmd.addCommand("P",process_command); // Converts two arguments to integers and echos them back
-  SCmd.addDefaultHandler(unrecognized); // Handler for command that isn't matched (says "What?")
+  sCmd.addCommand("ON",    LED_on);          // Turns LED on
+  sCmd.addCommand("OFF",   LED_off);         // Turns LED off
+  sCmd.addCommand("HELLO", sayHello);        // Echos the string argument back
+  sCmd.addCommand("P",     processCommand);  // Converts two arguments to integers and echos them back
+  sCmd.setDefaultHandler(unrecognized);      // Handler for command that isn't matched  (says "What?")
   Serial.println("Ready");
-
 }
 
-void loop()
-{
-  SCmd.readSerial(); // We don't do much, just process serial commands
+void loop() {
+  sCmd.readSerial();     // We don't do much, just process serial commands
 }
 
 
-void LED_on()
-{
+void LED_on() {
   Serial.println("LED on");
-  digitalWrite(arduinoLED,HIGH);
+  digitalWrite(arduinoLED, HIGH);
 }
 
-void LED_off()
-{
+void LED_off() {
   Serial.println("LED off");
-  digitalWrite(arduinoLED,LOW);
+  digitalWrite(arduinoLED, LOW);
 }
 
-void SayHello()
-{
+void sayHello() {
   char *arg;
-  arg = SCmd.next(); // Get the next argument from the SerialCommand object buffer
-  if (arg != NULL) // As long as it existed, take it
-  {
+  arg = sCmd.next();    // Get the next argument from the SerialCommand object buffer
+  if (arg != NULL) {    // As long as it existed, take it
     Serial.print("Hello ");
     Serial.println(arg);
   }
@@ -73,16 +69,14 @@ void SayHello()
 }
 
 
-void process_command()
-{
+void processCommand() {
   int aNumber;
   char *arg;
 
-  Serial.println("We're in process_command");
-  arg = SCmd.next();
-  if (arg != NULL)
-  {
-    aNumber=atoi(arg); // Converts a char string to an integer
+  Serial.println("We're in processCommand");
+  arg = sCmd.next();
+  if (arg != NULL) {
+    aNumber = atoi(arg);    // Converts a char string to an integer
     Serial.print("First argument was: ");
     Serial.println(aNumber);
   }
@@ -90,22 +84,20 @@ void process_command()
     Serial.println("No arguments");
   }
 
-  arg = SCmd.next();
-  if (arg != NULL)
-  {
-    aNumber=atol(arg);
+  arg = sCmd.next();
+  if (arg != NULL) {
+    aNumber = atol(arg);
     Serial.print("Second argument was: ");
     Serial.println(aNumber);
   }
   else {
     Serial.println("No second argument");
   }
-
 }
 
 // This gets set as the default handler, and gets called when no other command matches.
-void unrecognized()
-{
+void unrecognized(const char *command) {
   Serial.println("What?");
 }
+
 
