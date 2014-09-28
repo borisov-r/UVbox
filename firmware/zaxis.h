@@ -6,7 +6,7 @@
 
 #include "config.h"
 
-bool moveZ(int steps, bool dir, int speed);
+bool moveZ(int steps, boolean dir, int speed_);
 
 // move stepper motor up
 void moveUp(unsigned int stepsUp);
