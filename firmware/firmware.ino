@@ -22,6 +22,9 @@
 
 #include <SerialCommand.h>
 
+// include Servo library to contrl HDD motor
+#include <Servo.h>
+
 #include "config.h"
 //
 #include "lamps.h"
@@ -35,22 +38,25 @@
 SerialCommand sCmd;     // The demo SerialCommand object
 
 void setup() {
-  // pinMode(arduinoLED, OUTPUT);      // Configure the onboard LED for output
-  // digitalWrite(arduinoLED, LOW);    // default to LED off
+  // pinMode(arduinoLED, OUTPUT);     
+  // Configure the onboard LED for output
+  // digitalWrite(arduinoLED, LOW);   
+  // default to LED off
 
-  pinMode(UVlamp1, OUTPUT);      // Configure the onboard LED for output
-  digitalWrite(UVlamp1, LOW);    // default to LED off
+  
+  pinMode(UVlamp1, OUTPUT);   // Configure the onboard LED for output
+  digitalWrite(UVlamp1, LOW); // default to LED off
 
-  pinMode(UVlamp2, OUTPUT);      // Configure the onboard LED for output
-  digitalWrite(UVlamp2, LOW);    // default to LED off
+  pinMode(UVlamp2, OUTPUT);   // Configure the onboard LED for output
+  digitalWrite(UVlamp2, LOW); // default to LED off
 
-  pinMode(UVlamp3, OUTPUT);      // Configure the onboard LED for output
-  digitalWrite(UVlamp3, LOW);    // default to LED off
+  pinMode(UVlamp3, OUTPUT);   // Configure the onboard LED for output
+  digitalWrite(UVlamp3, LOW); // default to LED off
 
-  pinMode(UVlamp4, OUTPUT);      // Configure the onboard LED for output
-  digitalWrite(UVlamp4, LOW);    // default to LED off
+  pinMode(UVlamp4, OUTPUT);   // Configure the onboard LED for output
+  digitalWrite(UVlamp4, LOW); // default to LED off
 
-
+  // stepper motor pins
   pinMode(STEPPER_STEP, OUTPUT);
   pinMode(STEPPER_DIR, OUTPUT);
   pinMode(STEPPER_EN, OUTPUT);
@@ -58,31 +64,40 @@ void setup() {
   Serial.begin(9600);
 
   // Setup callbacks for SerialCommand commands
-  //sCmd.addCommand("ON",    LED_on);          // Turns LED on
-  //sCmd.addCommand("OFF",   LED_off);         // Turns LED off
-  sCmd.addCommand("HELLO", sayHello);          // Echos the string argument back
-  //sCmd.addCommand("P",     processCommand);  // Converts two arguments to integers and echos them back
-  sCmd.addCommand("L",     lampOnOff);         // Turn on or off lamp 
-  sCmd.addCommand("M",     moveZaxis);         // Converts two arguments to integers and echos them back
-  sCmd.setDefaultHandler(unrecognized);        // Handler for command that isn't matched  (says "What?")
+
+  // Turns LED on
+  //sCmd.addCommand("ON",LED_on);
+
+  // Turns LED off
+  //sCmd.addCommand("OFF",LED_off); // Turns LED off
+
+  // Echos the string argument back
+  sCmd.addCommand("HELLO",sayHello);
+
+  // Converts two arguments to integers and echos them back
+  //sCmd.addCommand("P",processCommand); 
+
+  // Turn on or off lamp
+  sCmd.addCommand("L",lampOnOff);
+
+  // Converts two arguments to integers and echos them back
+  sCmd.addCommand("M",moveZaxis); 
+
+  // Control speed of the HDD BLDC motor using ESC
+  sCmd.addCommand("HDD",hddSpeedControl);
+
+  // Handler for command that isn't matched  (says "What?")
+  sCmd.setDefaultHandler(unrecognized);
+  
   Serial.println("Ready");
 }
 
 void loop() {
-  sCmd.readSerial();     // We don't do much, just process serial commands
+  sCmd.readSerial();  // We don't do much, just process serial commands
 }
 
-/*
-void LED_on() {
-  Serial.println("LED on");
-  digitalWrite(UVlamp1, HIGH);
-}
 
-void LED_off() {
-  Serial.println("LED off");
-  digitalWrite(UVlamp1, LOW);
-}
-*/
+
 
 void sayHello() {
   char *arg;
@@ -95,35 +110,6 @@ void sayHello() {
     Serial.println("Hello, whoever you are");
   }
 }
-
-/*
-void processCommand() {
-  int aNumber;
-  char *arg;
-
-  Serial.println("We're in processCommand");
-  arg = sCmd.next();
-  if (arg != NULL) {
-    aNumber = atoi(arg);    // Converts a char string to an integer
-    Serial.print("First argument was: ");
-    Serial.println(aNumber);
-  }
-  else {
-    Serial.println("No arguments");
-  }
-
-  arg = sCmd.next();
-  if (arg != NULL) {
-    aNumber = atol(arg);
-    Serial.print("Second argument was: ");
-    Serial.println(aNumber);
-  }
-  else {
-    Serial.println("No second argument");
-  }
-}
-*/
-
 
 void lampOnOff() {
   int aNumber, lamps, onOff;
@@ -165,9 +151,6 @@ void lampOnOff() {
  else { Serial.println("Can't turn ON or OFF lamp"); }
   
 }
-
-
-
 
 void moveZaxis() {
   
@@ -217,10 +200,109 @@ void moveZaxis() {
 
 }
 
+// 
+void hddSpeedControl()
+{
+  /*
+	CONTROL SPEED OF HDD USING ESC
+	DIAGRAMM
+	      
+		      int 45        int 100
+	  ----------------
+	  |              |  variable   |
+	  |              |  <------->  |
+	  |              --------------
+			 
+	 0 ms           1ms        up to 1ms
+	 
+	       frequency = 50 Hz
+  */
+  Servo esc;
+
+  int zero = 45;        // 1 ms offset
+  int speed_max = 100;  // 1 ms max control speed
+  int stepSpeed = 1000; // delay between pulses
+  boolean startHDD = true; // spin HDD till get FALSE 
+
+  Serial.println("HDD start");
+  esc.attach(ESC_PIN);       // use pin DIO9 as PWM
+  
+  esc.write(zero);     // set frequency at 50 Hz and wait for beep 
+                       // ESC detects this signal actually
+  delay(5000);         // wait for beep signal
+
+  while(startHDD)
+  {
+	// start HDD to spin	
+	esc.write(zero);
+	delay(stepSpeed);
+	Serial.println("DBG:spin");
+        Serial.flush();
+        // delay(10);
+        
+        // if stop command received stop spinning
+        if(Serial.available())
+	{
+		Serial.read();
+                Serial.println("DBG: hddSpeedControl()...stop");
+                delay(1);
+                esc.detach();
+		startHDD = false;
+	}
+	
+  }
+  
+  Serial.println("HDD stop");
+
+}
+
 
 // This gets set as the default handler, and gets called when no other command matches.
 void unrecognized(const char *command) {
   Serial.println("What?");
 }
+
+
+// *************** OBSOLETE FUNCTIONS ********
+
+/* OBSOLETE FUNCTIONS
+void LED_on() {
+  Serial.println("LED on");
+  digitalWrite(UVlamp1, HIGH);
+}
+
+void LED_off() {
+  Serial.println("LED off");
+  digitalWrite(UVlamp1, LOW);
+}
+*/
+
+/*
+void processCommand() {
+  int aNumber;
+  char *arg;
+
+  Serial.println("We're in processCommand");
+  arg = sCmd.next();
+  if (arg != NULL) {
+    aNumber = atoi(arg);    // Converts a char string to an integer
+    Serial.print("First argument was: ");
+    Serial.println(aNumber);
+  }
+  else {
+    Serial.println("No arguments");
+  }
+
+  arg = sCmd.next();
+  if (arg != NULL) {
+    aNumber = atol(arg);
+    Serial.print("Second argument was: ");
+    Serial.println(aNumber);
+  }
+  else {
+    Serial.println("No second argument");
+  }
+}
+*/
 
 

@@ -15,7 +15,9 @@ typedef uint8_t byte;
 #define STEPPER_EN 12
 #define STEPPER_DIR 14
 #define STEPPER_STEP 13
-extern unsigned char STEPPER_SPEED;   // define speed of the motor
+
+// define stepper motor speed
+extern unsigned char STEPPER_SPEED;  
 
 // define output pins of the arduino that control the relays
 // for turning on and off the UV lamps
@@ -23,6 +25,9 @@ extern unsigned char STEPPER_SPEED;   // define speed of the motor
 #define UVlamp2 23
 #define UVlamp3 24
 #define UVlamp4 25
+
+// esc control of bldc hdd motor
+#define ESC_PIN 9
 
 /*
 // Interface table row struct
@@ -35,5 +40,7 @@ struct ioRow
 
 typedef struct ioRow IOrow;
 */
-//typedef struct ioRow inputRow;    // describes one row of input / output pins
-//typedef struct ioRow outputRow;   // describes one row of input / output pins
+//typedef struct ioRow inputRow;   
+// describes one row of input / output pins
+//typedef struct ioRow outputRow;  
+// describes one row of input / output pins
