@@ -86,6 +86,9 @@ void setup() {
   // Control speed of the HDD BLDC motor using ESC
   sCmd.addCommand("HDD",hddSpeedControl);
 
+  // Control speed of the HDD BLDC motor using ESC
+  sCmd.addCommand("D",turnOnOffDigitalPin);
+
   // Handler for command that isn't matched  (says "What?")
   sCmd.setDefaultHandler(unrecognized);
   
@@ -97,6 +100,47 @@ void loop() {
 }
 
 
+void turnOnOffDigitalPin()
+{
+  int digitalPin, onOff;
+  char *arg;
+
+  Serial.println("We are in turnOnOffDigitalPin() function.");
+  arg = sCmd.next();
+  if (arg != NULL) {
+     digitalPin = atoi(arg);   // Converts a char string to an integera
+     Serial.print("First argument was: ");
+     Serial.println(digitalPin);
+
+     if ( (digitalPin > 1) && (digitalPin < 31) ) { 
+     // all availabe pins in rfAtmega128 
+	pinMode(digitalPin, OUTPUT);
+     }
+     else{
+	Serial.println("Please enter pin number between 1 - 31");
+     }
+  }
+
+  arg = sCmd.next();
+  if (arg != NULL) {
+     onOff = atoi(arg);   // Converts a char string to an integera
+     Serial.print("Second argument was: ");
+     Serial.println(onOff);
+
+     if ( onOff == 1 ) { 
+     // all availabe pins in rfAtmega128 
+	digitalWrite(digitalPin, HIGH);
+     }
+     else if( onOff == 0) {
+	Serial.println("Enter pin number between 1 - 31");
+	digitalWrite(digitalPin, LOW);
+     }
+     else {
+	Serial.println("Enter as second argument 0 (off) or 1 (on)");
+     }
+  }
+  Serial.println("End of turnOnOffDigitalPin() function");
+}
 
 
 void sayHello() {
@@ -148,8 +192,8 @@ void lampOnOff() {
     else if (onOff == 1) { turnOnLamp(lamps); }
     else { Serial.println("Please enter reasonable value"); } 
  }
+
  else { Serial.println("Can't turn ON or OFF lamp"); }
-  
 }
 
 void moveZaxis() {
